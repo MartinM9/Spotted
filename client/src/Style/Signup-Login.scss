@@ -1,0 +1,101 @@
+///////////////////////////////////////////////////// Sign up form /////////////////////////////////////////////////////
+
+.signup-image-div, .login-image-div {
+    min-height: inherit;
+    min-width: inherit;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 6em;
+        letter-spacing: 2px;
+        font-weight: 400;
+        margin-top: 30px;
+        color: rgb(39, 39, 39);
+        border-bottom: 1px solid rgb(43, 43, 43);
+        padding-bottom: 7px;
+    }
+}
+
+.signup-image-div::after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../Style/aventspot.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    opacity : 0.7;
+    z-index: -1;
+}
+
+.form-container {
+    width: 40%;
+    padding: 30px 0 50px 0;
+    margin: 40px 0;
+    background-color: rgba(218, 218, 218, 0.651);
+    
+    form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+
+.form-input {
+    width: 65%;
+    padding: 10px;
+    margin: 15px 0;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.submit-btn {
+    width: 140px;
+    height: 45px;
+    margin-top: 20px;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 400;
+    color: rgb(31, 31, 31);
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: rgb(31, 31, 31);
+    box-shadow: 0px 15px 20px rgba(31, 31, 31, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+
+///////////////////////////////////////////////////// Log in form /////////////////////////////////////////////////////
+
+.login-image-div::after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../Style/signup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    opacity : 0.7;
+    z-index: -1;
+}
