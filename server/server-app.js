@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -6,6 +7,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const uploader = require('./cloudinary-setup');
 
 ///////////////////////////////////////////////////// Body parser /////////////////////////////////////////////////////
 
@@ -47,7 +49,7 @@ var store = new MongoDBStore({
     saveUninitialized: false
   }));
 
-///////////////////////////////////////////////////// Schema /////////////////////////////////////////////////////
+///////////////////////////////////////////////////// Models /////////////////////////////////////////////////////
 
 let userSchema = new Schema({
     username: String,
@@ -60,6 +62,12 @@ let userSchema = new Schema({
 })
 
 const User = mongoose.model('users', userSchema)
+
+let spotSchema = new Schema({
+    image: String
+})
+
+const Spot = mongoose.model('spots', spotSchema)
 
 ///////////////////////////////////////////////////// Sign up /////////////////////////////////////////////////////
 
@@ -76,6 +84,28 @@ app.post('/sign-up', (req, res) => {
         .catch(err => {
             res.json(err);
             console.log(err);
+        })
+});
+
+///////////////////////////////////////////////////// Creating spot /////////////////////////////////////////////////////
+
+app.post('/upload', uploader.single("image"), (req, res, next) => {
+    if(!req.file) {
+        next(new Error('No file uploaded!'));
+        return;
+    }
+    res.json({ secure_url: req.file.secure_url });
+});
+
+app.post('/create-spot', (req, res) => {
+    Spot.create(req.body)
+        .then(result => {
+            res.json({ message: 'Spot created' });
+            console.log(result);
+        })
+        .catch(err => {
+            res.json(err);
+            console.log(err)
         })
 })
 
@@ -110,6 +140,8 @@ app.get("/profile", (req, res)=> {
       res.status(403).json({message: "Unauthorized"})
     }
 })
+
+///////////////////////////////////////////////////// Log out /////////////////////////////////////////////////////
 
 app.get("/log-out",(req,res)=>{
     req.session.destroy();

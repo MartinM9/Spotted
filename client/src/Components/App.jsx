@@ -10,6 +10,7 @@ import Login from './Login';
 import PrivateRoute from './Private';
 import Profile from './Profile';
 import history from '../history'
+import CreateSpot from './CreateSpot'
 
 class App extends Component {
 
@@ -45,6 +46,7 @@ class App extends Component {
             {/* <Route path="/all-spots" component={AllSpots} /> */}
             <Route path="/sign-up" component={Signup} />
             <Route path="/log-in" render={() => <Login haveLoggedIn={this.haveLoggedIn} history={history} />} />
+            <Route path="/create-spot" component={CreateSpot} />
             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/profile" component={Profile} />
         </Switch>
         <Footer />

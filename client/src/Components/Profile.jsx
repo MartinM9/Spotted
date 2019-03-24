@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class Profile extends Component {
 
@@ -9,6 +10,7 @@ class Profile extends Component {
             <>
                 <section className="content">
                     <h1>What have you spotted today {this.props.user.username}?</h1>
+                    <Link to="/create-spot">Share your spot!</Link>
                 </section>
             </>
         )
