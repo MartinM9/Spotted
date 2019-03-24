@@ -5,8 +5,7 @@ class Login extends Component {
 
     state = {
         username: '',
-        password: '',
-        err: ''
+        password: ''
     }
 
     handleChange = e => {
@@ -25,6 +24,8 @@ class Login extends Component {
         })
         .then(response => {
             console.log(response);
+            this.props.haveLoggedIn(true, response.data.user);
+            this.props.history.push('/profile')
         })
         .catch(err => {
             console.log(err)
@@ -39,8 +40,8 @@ class Login extends Component {
                         <h1>Log in</h1>
                         <div className="form-container">
                             <form onSubmit={this.handleSubmit}>
-                                <input onChange={this.handleChange} className="form-input" placeholder="Username" type="text" name="username" />
-                                <input onChange={this.handleChange} className="form-input" placeholder="Password" type="password" name="password" />
+                                <input onChange={this.handleChange} className="form-input" placeholder="Username" type="text" name="username" value={this.state.username} />
+                                <input onChange={this.handleChange} className="form-input" placeholder="Password" type="password" name="password" value={this.state.password} />
                                 <input className="submit-btn" type="submit" value="log in" />
                             </form>
                         </div>

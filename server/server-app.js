@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-var session = require('express-session');
-var MongoDBStore = require('connect-mongodb-session')(session);
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 ///////////////////////////////////////////////////// Body parser /////////////////////////////////////////////////////
 
@@ -69,6 +69,7 @@ app.post('/sign-up', (req, res) => {
     user.password = hash;
     User.create(user)
         .then(result => {
+            debugger
             res.json({message: 'User created'});
             console.log(result);
         })
@@ -82,24 +83,38 @@ app.post('/sign-up', (req, res) => {
 
 app.post('/log-in', (req, res) => {
     User.findOne({username: req.body.username})
-        .then(result => {
+        .then(result => {debugger
             if(!result) {
                 res.status(403).json({errorMessage: 'Invalid credentials'})
                 return
             }
             if(bcrypt.compareSync(req.body.password, result.password)) {
                 req.session.user = result._doc;
+                debugger
                 const {password, ...user} = result._doc;
                 res.status(200).send({user: user}) 
             } else {
                 res.status(401).json({errorMessage: 'Invalid credentials'})
             }
         })
-        .catch(err => {
+        .catch(err => {debugger
             res.status(500).json({errorMessage: err})
         })
 })
 
+app.get("/profile", (req, res)=> {
+    debugger
+    if(req.session.user) {
+      res.json(req.session.user)
+    } else {
+      res.status(403).json({message: "Unauthorized"})
+    }
+})
+
+app.get("/log-out",(req,res)=>{
+    req.session.destroy();
+})
+  
 
 const port = 5000;
 

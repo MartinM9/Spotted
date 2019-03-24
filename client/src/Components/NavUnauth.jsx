@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../Style/logo_transparent.png';
 
-class Nav extends Component {
+class NavUnauth extends Component {
 
 
 
@@ -25,4 +25,4 @@ class Nav extends Component {
     }
 }
 
-export default Nav
+export default NavUnauth;
