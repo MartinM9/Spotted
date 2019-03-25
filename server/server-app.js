@@ -51,6 +51,8 @@ var store = new MongoDBStore({
 
 ///////////////////////////////////////////////////// Models /////////////////////////////////////////////////////
 
+const stringToObjectId = string => mongoose.Types.ObjectId(string);
+
 let userSchema = new Schema({
     username: String,
     firstname: String,
@@ -58,7 +60,12 @@ let userSchema = new Schema({
     email: String,
     password: String,
     car: String,
-    camera: String
+    camera: String,
+    spots: [{
+        type: Schema.Types.ObjectId,
+        ref: 'spots',
+        set:  stringToObjectId
+    }]
 })
 
 const User = mongoose.model('users', userSchema)
@@ -68,7 +75,12 @@ let spotSchema = new Schema({
     type: String,
     engine: String,
     horsepower: Number,
-    image: String
+    image: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+        set:  stringToObjectId
+    }
 })
 
 const Spot = mongoose.model('spots', spotSchema)
@@ -101,9 +113,13 @@ app.post('/upload', uploader.single("image"), (req, res, next) => {
     res.json({ secure_url: req.file.secure_url });
 });
 
-app.post('/create-spot', (req, res) => {
+app.post('/create-spot/:id', (req, res) => {
+    req.body.author = req.params.id
+    console.log(req.body)
     Spot.create(req.body)
         .then(result => {
+            debugger
+            // User.findByIdAndUpdate(req.params.id, {$push: {spots: result.id}})
             res.json({ message: 'Spot created' });
             console.log(result);
         })
@@ -141,6 +157,32 @@ app.get("/profile", (req, res)=> {
       res.json(req.session.user)
     } else {
       res.status(403).json({message: "Unauthorized"})
+    }
+})
+
+///////////////////////////////////////////////////// Listing all spots /////////////////////////////////////////////////////
+
+app.get('/all-spots', (req, res) => {
+    Spot.find({}).populate('author')
+        .then(result => {
+        res.status(200).json(result)
+        })
+        .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
+///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////
+
+app.get('/single-spot/:id', (req, res) => {
+    if(req.params.id) {debugger
+        Spot.findOne({_id: req.params.id}).populate('author')
+            .then(result => {
+                res.status(200.).json(result)
+            })
+            .catch(err => {
+                res.status(500).json(err)
+            })
     }
 })
 

@@ -38,12 +38,12 @@ class CreateSpot extends Component {
     handleSubmit = e => {
         e.preventDefault();
         
-        service.saveNewSpot(this.state)
+        service.saveNewSpot(this.state, this.props.user._id)
         .then(response => {
             console.log('added: ', response);
             // here you would redirect to some other page 
             this.props.addedSpot(this.state);
-            this.props.history.push('/single-spot');
+            this.props.history.push('/all-spots');
         })
         .catch(err => {
             console.log("Error while adding the thing: ", err);

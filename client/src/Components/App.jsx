@@ -4,7 +4,6 @@ import NavAuth from './NavAuth';
 import Main from './Main';
 import Footer from './Footer';
 import {Switch, Route} from 'react-router-dom';
-// import AllSpots from './AllSpots';
 import Signup from './Signup';
 import Login from './Login';
 import PrivateRoute from './Private';
@@ -12,6 +11,7 @@ import Profile from './Profile';
 import history from '../history'
 import CreateSpot from './CreateSpot';
 import SingleSpot from './SingleSpot';
+import AllSpots from './AllSpots';
 
 class App extends Component {
 
@@ -39,10 +39,6 @@ class App extends Component {
     this.setState(JSON.parse(localStorage.getItem("state")))  
   }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if(prevState.user !== this.state.user) history.push('/profile')
-  // }
-
   render() {
     return (
       <>
@@ -50,11 +46,11 @@ class App extends Component {
         {!this.state.loggedIn && <NavUnauth />}
         <Switch>
             <Route exact path="/" component={Main}/>
-            {/* <Route path="/all-spots" component={AllSpots} /> */}
             <Route path="/sign-up" component={Signup} />
+            <Route path="/all-spots" component={AllSpots} />
             <Route path="/log-in" render={() => <Login haveLoggedIn={this.haveLoggedIn} history={history} />} />
-            <Route path="/create-spot" render={() => <CreateSpot addedSpot={this.addedSpot} history={history} />} />
-            <Route path="/single-spot" render={() => <SingleSpot spot={this.state.spot} /> } />
+            <Route path="/create-spot" render={() => <CreateSpot addedSpot={this.addedSpot} user={this.state.user} history={history} />} />
+            <Route path="/single-spot/:id" component={SingleSpot} />
             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/profile" component={Profile} />
         </Switch>
         <Footer />

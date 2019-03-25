@@ -20,9 +20,10 @@ export default {
       .catch(errorHandler);
   },
 
-  saveNewSpot (newSpot) {
+  saveNewSpot (newSpot, id) {
     // console.log('new thing is: ', newThing)
-    return service.post('/create-spot', newSpot)
+    debugger
+    return service.post(`/create-spot/${id}`, newSpot)
       .then(res => res.data)
       .catch(errorHandler);
   }
