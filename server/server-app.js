@@ -64,6 +64,10 @@ let userSchema = new Schema({
 const User = mongoose.model('users', userSchema)
 
 let spotSchema = new Schema({
+    car: String,
+    type: String,
+    engine: String,
+    horsepower: Number,
     image: String
 })
 
@@ -113,21 +117,20 @@ app.post('/create-spot', (req, res) => {
 
 app.post('/log-in', (req, res) => {
     User.findOne({username: req.body.username})
-        .then(result => {debugger
+        .then(result => {
             if(!result) {
                 res.status(403).json({errorMessage: 'Invalid credentials'})
                 return
             }
             if(bcrypt.compareSync(req.body.password, result.password)) {
                 req.session.user = result._doc;
-                debugger
                 const {password, ...user} = result._doc;
                 res.status(200).send({user: user}) 
             } else {
                 res.status(401).json({errorMessage: 'Invalid credentials'})
             }
         })
-        .catch(err => {debugger
+        .catch(err => {
             res.status(500).json({errorMessage: err})
         })
 })

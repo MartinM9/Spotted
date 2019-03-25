@@ -10,22 +10,29 @@ import Login from './Login';
 import PrivateRoute from './Private';
 import Profile from './Profile';
 import history from '../history'
-import CreateSpot from './CreateSpot'
+import CreateSpot from './CreateSpot';
+import SingleSpot from './SingleSpot';
 
 class App extends Component {
 
   state = {
     loggedIn: false,
-    user: null
+    user: null,
+    spot: null
   }
 
   haveLoggedIn = (boolean, user) => {
-    debugger
     this.setState({
       loggedIn: boolean,
       user: user
     });
       localStorage.setItem("state", JSON.stringify(this.state))
+  }
+
+  addedSpot = spot => {
+    this.setState({
+      spot: spot
+    })
   }
 
   componentDidMount() {
@@ -46,7 +53,8 @@ class App extends Component {
             {/* <Route path="/all-spots" component={AllSpots} /> */}
             <Route path="/sign-up" component={Signup} />
             <Route path="/log-in" render={() => <Login haveLoggedIn={this.haveLoggedIn} history={history} />} />
-            <Route path="/create-spot" component={CreateSpot} />
+            <Route path="/create-spot" render={() => <CreateSpot addedSpot={this.addedSpot} history={history} />} />
+            <Route path="/single-spot" render={() => <SingleSpot spot={this.state.spot} /> } />
             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/profile" component={Profile} />
         </Switch>
         <Footer />

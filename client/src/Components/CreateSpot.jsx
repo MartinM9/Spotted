@@ -4,7 +4,17 @@ import service from '../service'
 class CreateSpot extends Component {
 
     state = {
+        car: '',
+        type: '',
+        engine: '',
+        horsepower: '',
         image: ''
+    }
+
+    handleChange = e => {
+        let updateSpot = {};
+        updateSpot[e.target.name] = e.target.value;
+        this.setState(updateSpot);
     }
 
     handleImageUpload = e => {
@@ -29,9 +39,11 @@ class CreateSpot extends Component {
         e.preventDefault();
         
         service.saveNewSpot(this.state)
-        .then(res => {
-            console.log('added: ', res);
+        .then(response => {
+            console.log('added: ', response);
             // here you would redirect to some other page 
+            this.props.addedSpot(this.state);
+            this.props.history.push('/single-spot');
         })
         .catch(err => {
             console.log("Error while adding the thing: ", err);
@@ -43,6 +55,10 @@ class CreateSpot extends Component {
             <>
                 <section className="content">
                         <form onSubmit={this.handleSubmit}>
+                            <input onChange={this.handleChange} value={this.state.car} name="car" type="text" placeholder="Car: Lamborghini, Ferrari..." />
+                            <input onChange={this.handleChange} value={this.state.type} name="type" type="text" placeholder="Type: Huracán, 458..." />
+                            <input onChange={this.handleChange} value={this.state.engine} name="engine" type="text" placeholder="Engine" />
+                            <input onChange={this.handleChange} value={this.state.horsepower} name="horsepower" type="text" placeholder="Horsepower" />
                             <input onChange={this.handleImageUpload} className="form-input" type="file"/>
                             <button className="submit-btn" type="submit">Upload</button>
                         </form>
