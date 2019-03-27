@@ -1,0 +1,88 @@
+///////////////////////////////////////////////////// All spots /////////////////////////////////////////////////////
+
+.all-spots-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.all-spots-container-spot {
+    width: 30%;
+    margin: 30px 0;
+}
+
+.car-image-div {
+    height: 300px;
+    text-align: center;
+
+    img {
+        height: 100%;
+        border-radius: 3px;    
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+    }
+
+    img:hover {
+        transform: translateY(-7px);
+        box-shadow: 0px 15px 20px rgba(31, 31, 31, 0.4);
+    }
+}
+
+///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////
+
+.single-spot-container {
+    width: 80%;
+    margin: 20px auto;
+
+    .single-spot-container-spot {
+        text-align: center;
+
+        .single-spot-container-spot-img-div{
+            margin-bottom: 20px;
+            height: 100%;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .single-spot-container-spot-author-rating-wrapper {
+            display: flex;
+            justify-content: space-between;
+
+            .single-spot-container-spot-author-div {
+                font-size: 2em;
+            }
+        }
+    }
+}
+
+.line-div {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-bottom: 40px;
+
+    .h1-div {
+      font-size: 5em;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin: 30px 0 15px 0;
+      position: relative;
+      display: inline-block;
+      z-index: 2;
+      padding: 0 20px;
+      background: #fff;
+    }
+
+    .line {
+      position: absolute;
+      top: 55px;
+      border-bottom: 1px solid rgb(48, 48, 48);
+      width: 100%;
+    }
+
+    p {
+        font-size: 3em;
+    }
+  }

@@ -5,15 +5,15 @@ import Loader from './Loader';
 import history from '../history';
 
 
-export default class AllSpots extends Component {
+class AllSpots extends Component {
 
     state = {
         allSpots : [],
-        isLoading:true
+        isLoading:true,
+        search: ''
     }
 
     componentDidMount() {
-        //axios
         axios({
             url: 'http://localhost:5000/all-spots',
             method: 'get',
@@ -29,17 +29,25 @@ export default class AllSpots extends Component {
     }
 
     showSingleSpot = (e, id) => {
-        console.log(id)
         history.push(`/single-spot/${id}`)
     }   
 
-    render() {
+    updateSearch = e => {
+        this.setState({
+            search: e.target.value.substr(0, 20)
+        })
+    }
 
-        const allSpots = this.state.allSpots.map(spot => {
+    render() {
+        let filteredSpots = this.state.allSpots.filter(spot => {
+            return spot.car.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || spot.type.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+        });
+        const allSpots = filteredSpots.map(spot => {            
             return (
-                <div onClick={e => this.showSingleSpot(e, spot._id)} >
+                <div className="all-spots-container-spot">
                     <Spot
                         spot={spot}
+                        showSingleSpot={this.showSingleSpot}
                     />
                 </div>
             )
@@ -48,9 +56,16 @@ export default class AllSpots extends Component {
         return(
             <>
                 {this.state.isLoading && <Loader />}
-                {this.state.allSpots.length > 0 && allSpots}
+                <section className="content">
+                    <input onChange={this.updateSearch} type="text" value={this.state.search} />
+                    <div className="all-spots-container">
+                        {this.state.allSpots.length > 0 && allSpots}
+                    </div>
+                </section>
             </>
         )
 
     }
 }
+
+export default AllSpots;

@@ -93,7 +93,6 @@ app.post('/sign-up', (req, res) => {
     user.password = hash;
     User.create(user)
         .then(result => {
-            debugger
             res.json({message: 'User created'});
             console.log(result);
         })
@@ -118,10 +117,10 @@ app.post('/create-spot/:id', (req, res) => {
     console.log(req.body)
     Spot.create(req.body)
         .then(result => {
-            debugger
-            // User.findByIdAndUpdate(req.params.id, {$push: {spots: result.id}})
-            res.json({ message: 'Spot created' });
-            console.log(result);
+            User.findByIdAndUpdate(req.params.id, {$push: {spots: result.id}})
+            .then(newUser => {
+                res.json({ message: 'Spot created' });
+            })
         })
         .catch(err => {
             res.json(err);
@@ -160,6 +159,18 @@ app.get("/profile", (req, res)=> {
     }
 })
 
+///////////////////////////////////////////////////// Edit profile /////////////////////////////////////////////////////
+
+app.post('/profile/edit/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body)
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
+})
+
 ///////////////////////////////////////////////////// Listing all spots /////////////////////////////////////////////////////
 
 app.get('/all-spots', (req, res) => {
@@ -172,17 +183,54 @@ app.get('/all-spots', (req, res) => {
     })
 })
 
+///////////////////////////////////////////////////// Spots by user /////////////////////////////////////////////////////
+
+app.get('/profile/:id/spots', (req, res) => {
+    User.findOne({_id: req.params.id}).populate('spots')
+        .then(result => {
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
+})
+
 ///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////
 
 app.get('/single-spot/:id', (req, res) => {
-    if(req.params.id) {debugger
+    if(req.params.id) {
         Spot.findOne({_id: req.params.id}).populate('author')
             .then(result => {
-                res.status(200.).json(result)
+                res.status(200).json(result)
             })
             .catch(err => {
                 res.status(500).json(err)
             })
+    }
+})
+
+///////////////////////////////////////////////////// Delete single spot /////////////////////////////////////////////////////
+
+app.post('/single-spot/:id', (req, res) => {
+    if(req.session.user._id ) {
+        Spot.findOne({_id: req.params.id})
+        .then(result => {
+            debugger
+            if(req.session.user._id.toString() === result.author.toString()) {
+                Spot.findByIdAndDelete({_id: req.params.id})
+                    .then(result => {
+                        console.log(result);
+                        debugger
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
     }
 })
 

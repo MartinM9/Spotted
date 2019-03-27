@@ -1,14 +1,11 @@
 import React from 'react'
 
-const Spot =( {spot} ) => {
+const Spot =( {spot, showSingleSpot} ) => {
     return(
-        <>
-            <p>Car: {spot.car}</p>
-            <p>Type: {spot.type} </p>
-            <p>Engine: {spot.engine} </p>
-            <p>Horsepower: {spot.horsepower} </p>
-            <p>Author: {spot.author.username}</p>
-            <img src={spot.image} alt="Car" />
+        <>  
+            <div className="car-image-div">
+                <img  onClick={e => showSingleSpot(e, spot._id)} src={spot.image} alt="Car" />
+            </div>
         </>
     )
 }

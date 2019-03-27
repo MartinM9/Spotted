@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import logo from '../Style/logo_transparent.png';
 import axios from 'axios';
 
-class NavUnauth extends Component {
+class NavAuth extends Component {
 
     handleLogOut = () => {
         localStorage.clear();
@@ -39,4 +39,4 @@ class NavUnauth extends Component {
     }
 }
 
-export default NavUnauth;
+export default NavAuth;
