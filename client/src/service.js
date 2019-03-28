@@ -22,7 +22,6 @@ export default {
 
   saveNewSpot (newSpot, id) {
     // console.log('new thing is: ', newThing)
-    debugger
     return service.post(`/create-spot/${id}`, newSpot)
       .then(res => res.data)
       .catch(errorHandler);

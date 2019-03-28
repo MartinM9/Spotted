@@ -10,7 +10,8 @@ class AllSpots extends Component {
     state = {
         allSpots : [],
         isLoading:true,
-        search: ''
+        search: '',
+        loggedIn: false
     }
 
     componentDidMount() {
@@ -21,7 +22,7 @@ class AllSpots extends Component {
         })
         .then(response => {
             console.log(response);
-            this.setState({allSpots:response.data, isLoading:false})
+            this.setState({allSpots:response.data, isLoading:false, loggedIn: this.props.loggedIn})
         })
         .catch(err => {
             console.log(err)
@@ -48,6 +49,7 @@ class AllSpots extends Component {
                     <Spot
                         spot={spot}
                         showSingleSpot={this.showSingleSpot}
+                        loggedIn={this.state.loggedIn}
                     />
                 </div>
             )

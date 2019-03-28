@@ -8,7 +8,8 @@ class UserSpots extends Component {
 
     state = {
         user: null,
-        isLoading: true
+        isLoading: true,
+        loggedIn: false
     }
 
     componentDidMount() {
@@ -19,7 +20,7 @@ class UserSpots extends Component {
         })
         .then(response => {
             console.log(response)
-            this.setState({user: response.data, isLoading: false})
+            this.setState({user: response.data, isLoading: false, loggedIn: this.props.loggedIn })
         })
         .catch(err => {
             console.log(err)
@@ -40,6 +41,7 @@ class UserSpots extends Component {
                         <Spot
                             spot={spot}
                             showSingleSpot={this.showSingleSpot}
+                            loggedIn={this.state.loggedIn}
                         />
                     </div>
                 )

@@ -49,11 +49,11 @@ class App extends Component {
         <Switch>
             <Route exact path="/" component={Main}/>
             <Route path="/sign-up" component={Signup} />
-            <Route path="/all-spots" component={AllSpots} />
+            <Route path="/all-spots" render={(props) => <AllSpots loggedIn={this.state.loggedIn} />} />
             <Route path="/log-in" render={() => <Login haveLoggedIn={this.haveLoggedIn} history={history} />} />
             <Route path="/create-spot" render={() => <CreateSpot addedSpot={this.addedSpot} user={this.state.user} history={history} />} />
             <Route path="/single-spot/:id" render={(props) => <SingleSpot {...props} user={this.state.user} />} />
-            <Route path="/profile/:id/spots" component={UserSpots} />
+            <Route path="/profile/:id/spots" render={(props) => <UserSpots {...props} loggedIn={this.state.loggedIn} />} />
             <Route path="/profile/edit/:id" component={EditProfile} />
             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/profile" component={Profile} />
         </Switch>

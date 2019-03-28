@@ -6,7 +6,8 @@ import './Style/Signup-Login.scss';
 import './Style/Spots.scss';
 import * as serviceWorker from './serviceWorker';
 import { Router} from 'react-router-dom';
-import history from './history'
+import history from './history';
+import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(<Router history={history}><App /></Router>, document.getElementById('root'));
 

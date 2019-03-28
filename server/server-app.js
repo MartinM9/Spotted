@@ -28,7 +28,7 @@ mongoose.connect('mongodb://localhost/spotted', {useNewUrlParser: true})
 ///////////////////////////////////////////////////// CORS /////////////////////////////////////////////////////
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://api.rss2json.com/'],
     credentials: true
 }))
 
@@ -76,6 +76,14 @@ let spotSchema = new Schema({
     engine: String,
     horsepower: Number,
     image: String,
+    ratingCount: { type: Number, default: 0 },
+    ratings: Array,
+    userRating: Array,
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'comments',
+        set:  stringToObjectId
+    }],
     author: {
         type: Schema.Types.ObjectId,
         ref: 'users',
@@ -84,6 +92,41 @@ let spotSchema = new Schema({
 })
 
 const Spot = mongoose.model('spots', spotSchema)
+
+let commentSchema = new Schema({
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+        set: stringToObjectId
+    },
+    spot: {
+        type: Schema.Types.ObjectId,
+        ref: 'spots',
+        set: stringToObjectId
+    },
+    comment: String
+})
+
+const Comment = mongoose.model('comments', commentSchema)
+
+///////////////////////////////////////////////////// Comments /////////////////////////////////////////////////////
+
+app.post('/single-spot/:id/comment', (req, res) => {debugger
+    req.body.author = req.session.user._id.toString();
+    req.body.spot = req.params.id
+    Comment.create(req.body)
+        .then(result => {debugger
+            console.log(result)
+            Spot.findByIdAndUpdate(req.params.id, {$push: {comments: result.id}})
+                .then(newComment => {debugger
+                    res.json({ message: 'Comment created' });
+                })
+        })
+        .catch(err => {debugger
+            res.json(err)
+            console.log(err)
+        })
+})
 
 ///////////////////////////////////////////////////// Sign up /////////////////////////////////////////////////////
 
@@ -199,7 +242,7 @@ app.get('/profile/:id/spots', (req, res) => {
 
 app.get('/single-spot/:id', (req, res) => {
     if(req.params.id) {
-        Spot.findOne({_id: req.params.id}).populate('author')
+        Spot.findOne({_id: req.params.id}).populate('author').populate({path:"comments", populate: {path:"author"}} )
             .then(result => {
                 res.status(200).json(result)
             })
@@ -211,16 +254,14 @@ app.get('/single-spot/:id', (req, res) => {
 
 ///////////////////////////////////////////////////// Delete single spot /////////////////////////////////////////////////////
 
-app.post('/single-spot/:id', (req, res) => {
+app.post('/single-spot/:id/delete', (req, res) => {
     if(req.session.user._id ) {
         Spot.findOne({_id: req.params.id})
         .then(result => {
-            debugger
             if(req.session.user._id.toString() === result.author.toString()) {
                 Spot.findByIdAndDelete({_id: req.params.id})
                     .then(result => {
                         console.log(result);
-                        debugger
                     })
                     .catch(err => {
                         console.log(err);
@@ -231,6 +272,26 @@ app.post('/single-spot/:id', (req, res) => {
         .catch(err => {
             res.status(500).json(err)
         })
+    }
+})
+
+///////////////////////////////////////////////////// Rating of spot /////////////////////////////////////////////////////
+
+app.post('/single-spot/:id', (req, res) => {
+    let userId = req.session.user._id.toString();
+    debugger
+    if(req.body.star > 0) {
+        Spot.findOneAndUpdate({_id: req.params.id, userRating: {$nin: [userId]}}, 
+                               {$inc: {ratingCount: 1},$push: {ratings: req.body.star, userRating: userId}},
+                               {new: true})
+            .then(response => {
+                debugger
+                res.status(200).json(response)
+            })
+            .catch(err => {
+                debugger
+                res.status(500).json(err)
+            })
     }
 })
 

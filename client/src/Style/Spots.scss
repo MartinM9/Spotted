@@ -28,6 +28,17 @@
     }
 }
 
+.car-image-div-not-logged {
+    height: 300px;
+    text-align: center;
+
+    img {
+        height: 100%;
+        border-radius: 3px;
+    }
+}
+
+
 ///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////
 
 .single-spot-container {
@@ -49,10 +60,21 @@
         .single-spot-container-spot-author-rating-wrapper {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px; 
+            border-bottom: 2px solid black;
 
             .single-spot-container-spot-author-div {
                 font-size: 2em;
             }
+        }
+
+        .single-spot-container-spot-comment-section {
+            margin: 30px 0;
+            border: 1px solid rgb(41, 41, 41);
+            border-radius: 3px;
+            min-height: 500px;
+            padding: 30px; 
         }
     }
 }
@@ -85,4 +107,12 @@
     p {
         font-size: 3em;
     }
+  }
+
+  .gold {
+      color: rgb(255,215,0);
+  }
+
+  .rating-div {
+          font-size: 1.9em;
   }

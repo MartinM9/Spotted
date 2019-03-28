@@ -5,7 +5,8 @@ class Login extends Component {
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        errMessage: ''
     }
 
     handleChange = e => {
@@ -29,6 +30,9 @@ class Login extends Component {
         })
         .catch(err => {
             console.log(err)
+            this.setState({
+                errMessage: err.response.data.errorMessage
+            })
         })
     }
     
@@ -43,6 +47,7 @@ class Login extends Component {
                                 <input onChange={this.handleChange} className="form-input" placeholder="Username" type="text" name="username" value={this.state.username} />
                                 <input onChange={this.handleChange} className="form-input" placeholder="Password" type="password" name="password" value={this.state.password} />
                                 <input className="submit-btn" type="submit" value="log in" />
+                                {this.state.errMessage && <p className="error-message">{this.state.errMessage}</p>}
                             </form>
                         </div>
                     </div>

@@ -55,11 +55,11 @@ class CreateSpot extends Component {
             <>
                 <section className="content">
                         <form onSubmit={this.handleSubmit}>
-                            <input onChange={this.handleChange} value={this.state.car} name="car" type="text" placeholder="Car: Lamborghini, Ferrari..." />
-                            <input onChange={this.handleChange} value={this.state.type} name="type" type="text" placeholder="Type: Huracán, 458..." />
-                            <input onChange={this.handleChange} value={this.state.engine} name="engine" type="text" placeholder="Engine" />
-                            <input onChange={this.handleChange} value={this.state.horsepower} name="horsepower" type="text" placeholder="Horsepower" />
-                            <input onChange={this.handleImageUpload} className="form-input" type="file"/>
+                            <input required onChange={this.handleChange} value={this.state.car} name="car" type="text" placeholder="Car: Lamborghini, Ferrari..." />
+                            <input required onChange={this.handleChange} value={this.state.type} name="type" type="text" placeholder="Type: Huracán, 458..." />
+                            <input required onChange={this.handleChange} value={this.state.engine} name="engine" type="text" placeholder="Engine" />
+                            <input required onChange={this.handleChange} value={this.state.horsepower} name="horsepower" type="text" placeholder="Horsepower" />
+                            <input required onChange={this.handleImageUpload} className="form-input" type="file"/>
                             <button className="submit-btn" type="submit">Upload</button>
                         </form>
                 </section>
