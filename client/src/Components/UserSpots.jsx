@@ -54,6 +54,7 @@ class UserSpots extends Component {
             <>
                 {this.state.isLoading && <Loader />}
                 <section className="content">
+                {this.state.user && <div className="heading-user-spots">All spots by {this.state.user.username}</div>}
                     <div className="all-spots-container">
                         {this.state.user && userSpots}
                     </div>

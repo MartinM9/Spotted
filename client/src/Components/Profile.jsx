@@ -20,10 +20,14 @@ class Profile extends Component {
         return(
             <>
                 <section className="content">
-                    <h1>What have you spotted today {this.props.user.username}?</h1>
-                    <button onClick={this.linkToShare}>Share your spot!</button>
-                    <button onClick={this.linkToEdit}>Edit your profile</button>
-                    <button onClick={this.linkToMySpots} user={this.props.user}>My spots</button>
+                    <div className="profile-image-div">
+                        <h1>What have you spotted today {this.props.user.username}?</h1>
+                        <div className="profile-buttons-div">
+                            <button className="submit-btn-profile" onClick={this.linkToShare}>Share your spot!</button>
+                            <button className="submit-btn-profile" onClick={this.linkToMySpots} user={this.props.user}>My spots</button>
+                            <button className="submit-btn-profile" onClick={this.linkToEdit}>Edit your profile</button>
+                        </div>
+                    </div>
                 </section>
             </>
         )

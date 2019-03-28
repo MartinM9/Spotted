@@ -59,7 +59,7 @@ class AllSpots extends Component {
             <>
                 {this.state.isLoading && <Loader />}
                 <section className="content">
-                    <input onChange={this.updateSearch} type="text" value={this.state.search} />
+                    <input className="search-field" placeholder="Search..." onChange={this.updateSearch} type="text" value={this.state.search} />
                     <div className="all-spots-container">
                         {this.state.allSpots.length > 0 && allSpots}
                     </div>

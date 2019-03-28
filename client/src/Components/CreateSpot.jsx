@@ -54,14 +54,26 @@ class CreateSpot extends Component {
         return(
             <>
                 <section className="content">
-                        <form onSubmit={this.handleSubmit}>
-                            <input required onChange={this.handleChange} value={this.state.car} name="car" type="text" placeholder="Car: Lamborghini, Ferrari..." />
-                            <input required onChange={this.handleChange} value={this.state.type} name="type" type="text" placeholder="Type: Huracán, 458..." />
-                            <input required onChange={this.handleChange} value={this.state.engine} name="engine" type="text" placeholder="Engine" />
-                            <input required onChange={this.handleChange} value={this.state.horsepower} name="horsepower" type="text" placeholder="Horsepower" />
-                            <input required onChange={this.handleImageUpload} className="form-input" type="file"/>
-                            <button className="submit-btn" type="submit">Upload</button>
-                        </form>
+                    <div className="create-spot-container">
+                        <div className="form-container-create-spot">
+                            <form onSubmit={this.handleSubmit}>
+                                <input required onChange={this.handleChange} className="form-input" value={this.state.car} name="car" type="text" placeholder="Car: Lamborghini, Ferrari..." />
+                                <input required onChange={this.handleChange} className="form-input" value={this.state.type} name="type" type="text" placeholder="Type: Huracán, 458..." />
+                                <input required onChange={this.handleChange} className="form-input" value={this.state.engine} name="engine" type="text" placeholder="Engine: 5.0 V8" />
+                                <input required onChange={this.handleChange} className="form-input" value={this.state.horsepower} name="horsepower" type="text" placeholder="Horsepower: 640" />
+                                <input required onChange={this.handleImageUpload} className="form-input-file" type="file" />
+                                <button className="submit-btn" type="submit">Upload</button>
+                            </form>
+                        </div>
+                        <div className="rules-div">
+                            <h2>Rules for uploading</h2>
+                            <ul>
+                                <li>The spot has to be spot-worthy. This means it has to be an exclusive car that you see less often on the road than a common Volkswagen Golf or Ford Focus.</li>
+                                <li>Every spotter can spot every car only once.</li>
+                                <li>The pictures must be of decent quality. Every image will be cropped to 1024px width and 768px height.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
             </>
         )

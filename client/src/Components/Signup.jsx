@@ -45,11 +45,11 @@ class Signup extends Component {
                         <h1>Join the family!</h1>
                         <div className="form-container">
                             <form onSubmit={this.handleSubmit}>
-                                <input onChange={this.handleChange} className="form-input" placeholder="Username" type="text" name="username" value={this.state.username} />
-                                <input onChange={this.handleChange} className="form-input" placeholder="First name" type="text" name="firstname" value={this.state.firstname} />
-                                <input onChange={this.handleChange} className="form-input" placeholder="Last name" type="text" name="lastname" value={this.state.lastname} />
-                                <input onChange={this.handleChange} className="form-input" placeholder="Email" type="email" name="email" value={this.state.email} />
-                                <input onChange={this.handleChange} className="form-input" placeholder="Password" type="password" name="password" value={this.state.password} />
+                                <input required onChange={this.handleChange} className="form-input" placeholder="Username" type="text" name="username" value={this.state.username} />
+                                <input required onChange={this.handleChange} className="form-input" placeholder="First name" type="text" name="firstname" value={this.state.firstname} />
+                                <input required onChange={this.handleChange} className="form-input" placeholder="Last name" type="text" name="lastname" value={this.state.lastname} />
+                                <input required onChange={this.handleChange} className="form-input" placeholder="Email" type="email" name="email" value={this.state.email} />
+                                <input required onChange={this.handleChange} className="form-input" placeholder="Password" type="password" name="password" value={this.state.password} />
                                 <input onChange={this.handleChange} className="form-input" placeholder="Car I drive" type="text" name="car" value={this.state.car} />
                                 <input onChange={this.handleChange} className="form-input" placeholder="Camera/Smartphone I use" type="text" name="camera" value={this.state.camera} />
                                 <input className="submit-btn" type="submit" value="sign up" />

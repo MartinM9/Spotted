@@ -4,6 +4,7 @@ import App from './Components/App';
 import './Style/App.scss';
 import './Style/Signup-Login.scss';
 import './Style/Spots.scss';
+import './Style/Profile.scss';
 import * as serviceWorker from './serviceWorker';
 import { Router} from 'react-router-dom';
 import history from './history';

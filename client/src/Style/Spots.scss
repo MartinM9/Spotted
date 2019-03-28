@@ -1,9 +1,24 @@
 ///////////////////////////////////////////////////// All spots /////////////////////////////////////////////////////
 
+.search-field {
+    display: block;
+    margin: 70px auto 30px auto;
+    width: 30%;
+    padding: 10px 20px;
+    font-size: 1.6em;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+}
+
+.search-field:focus {
+    outline: none;
+}
+
 .all-spots-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom: 50px;
 }
 
 .all-spots-container-spot {
@@ -41,6 +56,23 @@
 
 ///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////
 
+.delete-button {
+    width: auto;
+    height: 45px;
+    margin-top: 0;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+    padding: 0 15px;
+    color: rgb(253, 253, 253);
+    background-color: #d11a2a;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
 .single-spot-container {
     width: 80%;
     margin: 20px auto;
@@ -69,12 +101,62 @@
             }
         }
 
+        .comment-form {
+            position: relative;
+
+        }
+
         .single-spot-container-spot-comment-section {
             margin: 30px 0;
             border: 1px solid rgb(41, 41, 41);
             border-radius: 3px;
             min-height: 500px;
             padding: 30px; 
+            text-align: left;
+            overflow: auto;
+
+            .comment-input {
+                width: 100%;
+                padding: 15px;
+                margin: 15px 0;
+                box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
+                background: #fff;
+                border: none;
+                border-top: 1px solid lightgray;
+                border-left: 1px solid lightgray;
+            }
+
+            .comment-button {
+                position: absolute;
+                top: 15px;
+                right: 0;
+                padding: 14px;
+                font-size: 1.6em;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-weight: 400;
+                color: #fff;
+                background-color: #0269A4;
+                border: none;
+                transition: all 0.3s ease 0s;
+                cursor: pointer;
+            }
+
+            .comment-div {
+                margin: 10px 0;
+                line-height: 1.1em;
+                letter-spacing: 1px;
+            }
+
+            .comment-author {
+                font-size: 1.6em;
+                font-weight: 600;
+            }
+
+            .comment {
+                font-size: 1.6em;
+                font-weight: 400;
+            }
         }
     }
 }
@@ -115,4 +197,44 @@
 
   .rating-div {
           font-size: 1.9em;
+  }
+
+  .heading-user-spots {
+    font-size: 5em;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin: 30px 0 15px 0;
+    text-align: center;
+  }
+
+///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////  
+
+  @media (max-width: 600px) {
+    .search-field {
+        margin: 40px auto 30px auto;
+        width: 90%;
+        padding: 15px 20px;
+    }
+
+    .all-spots-container {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: none;
+        margin-bottom: 20px;
+    }
+
+    .all-spots-container-spot {
+        width: 90%;
+        min-width: 0;
+        margin: 30px 0;
+    }
+
+    .car-image-div {
+        height: 300px;
+        text-align: center;
+    
+        img {
+            max-height: 100%;
+        }
+    }
   }

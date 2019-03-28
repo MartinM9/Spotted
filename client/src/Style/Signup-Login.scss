@@ -1,5 +1,9 @@
 ///////////////////////////////////////////////////// Sign up form /////////////////////////////////////////////////////
 
+input:focus{
+    outline: none;
+}
+
 .signup-image-div, .login-image-div {
     min-height: inherit;
     min-width: inherit;

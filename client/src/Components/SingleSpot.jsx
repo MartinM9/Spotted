@@ -150,8 +150,9 @@ class SingleSpot extends Component {
                             </div>
                             <div className="single-spot-container-spot-author-rating-wrapper">
                                 <div className="single-spot-container-spot-author-div">
-                                    <p>Spotted by: <span onClick={this.linkToMySpots}>{spot.author.username}</span></p>
+                                    <p>Spotted by: <span className="spotter-name" onClick={this.linkToMySpots}>{spot.author.username}</span></p>
                                 </div>
+                                {spot.author._id === this.props.user._id && <button className="delete-button" onClick={this.deleteHandler}>delete this spot</button>}
                                 <div className="rating-div">
                                     <Rating
                                       initialRating={this.state.ratings.length > 0 && this.averageRating()}
@@ -159,13 +160,13 @@ class SingleSpot extends Component {
                                       fullSymbol="fa fa-star fa-2x gold"
                                       onClick={this.ratingHandler}
                                     />
-                                    {spot.author._id === this.props.user._id && <button onClick={this.deleteHandler}>delete</button>}
+                                    
                                 </div>
                             </div>
                             <div className="single-spot-container-spot-comment-section">
-                                <form onSubmit={this.submitComment}>
-                                    <input onChange={this.handleComment} type="text" placeholder="Your thoughts..." name="comment" value={this.state.comment} />
-                                    <button type="submit">Post the comment</button>
+                                <form className="comment-form" onSubmit={this.submitComment}>
+                                    <input className="comment-input" onChange={this.handleComment} type="text" placeholder="Your thoughts..." name="comment" value={this.state.comment} />
+                                    <button className="comment-button" type="submit">Post the comment</button>
                                 </form>
                                 {allComments}
                             </div>

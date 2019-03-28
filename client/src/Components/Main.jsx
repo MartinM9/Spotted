@@ -46,7 +46,7 @@ class Main extends Component {
                         <div className="layer"></div>
                         <div className="main-layer-content-div">
                             <img src={logo} alt=""/>
-                            <p>Spot it, share it and spot some more.</p>
+                            <p>Spot it, share it, rate it and discuss.</p>
                         </div>
                         <video muted autoPlay loop>
                             <source src={video} type="video/mp4" />

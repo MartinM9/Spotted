@@ -1,0 +1,124 @@
+///////////////////////////////////////////////////// Profile /////////////////////////////////////////////////////
+
+.profile-image-div {
+    min-height: inherit;
+    min-width: inherit;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 6em;
+        letter-spacing: 2px;
+        font-weight: 400;
+        margin-top: 30px;
+        color: rgb(39, 39, 39);
+        border-bottom: 1px solid rgb(43, 43, 43);
+        padding-bottom: 7px;
+    }
+}
+
+.profile-image-div::after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../Style/fuchs.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    opacity : 0.7;
+    z-index: -1;
+}
+
+.profile-buttons-div {
+    width: 80%;
+    position: absolute;
+    top: 45%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .submit-btn-profile {
+        padding: 20px;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 400;
+        color: rgb(31, 31, 31);
+        background-color: #fff;
+        border: none;
+        border-radius: 45px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+    }
+
+    .submit-btn-profile:hover {
+        background-color: rgb(31, 31, 31);
+        box-shadow: 0px 15px 20px rgba(31, 31, 31, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+    }
+    
+}
+
+///////////////////////////////////////////////////// Share spot /////////////////////////////////////////////////////
+
+.create-spot-container {
+    min-width: inherit;
+    min-height: inherit;
+    background-color: rgba(218, 218, 218, 0.651);
+    display: flex;
+    padding: 5% 0;
+}
+
+.form-container-create-spot {
+    width: 50%;
+    height: 80%;
+    padding: 30px 0 50px 0;
+    border-right: 1px solid black;
+    
+    form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .form-input-file{
+        width: 65%;
+        padding: 10px;
+        margin: 15px 0;
+        box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        border: none;
+    }
+}
+
+.rules-div {
+    width: 50%;
+    text-align: center;
+    padding: 0 50px;
+
+    h2 {
+        font-size: 4em;
+        margin: 30px 0 50px 0;
+    }
+
+    ul{
+        margin: 10px 0;
+        li{
+            text-align: left;
+            font-size: 1.7em;
+            line-height: 1.2em;
+            margin: 10px 0;
+            list-style-type: disc;
+        }
+    }
+}
