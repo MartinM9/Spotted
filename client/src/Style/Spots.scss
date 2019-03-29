@@ -56,6 +56,12 @@
 
 ///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////
 
+.spotter-name {
+    font-weight: 600;
+    cursor: pointer;
+    padding-left: 5px; 
+}
+
 .delete-button {
     width: auto;
     height: 45px;
@@ -207,9 +213,172 @@
     text-align: center;
   }
 
-///////////////////////////////////////////////////// Single spot /////////////////////////////////////////////////////  
+///////////////////////////////////////////////////// Media query /////////////////////////////////////////////////////  
+
+@media (min-width:1024px) and (max-width: 1440px) {
+    .search-field {
+        margin: 50px auto 30px auto;
+        width: 40%;
+    }
+    
+    .all-spots-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
+    
+    .all-spots-container-spot {
+        width: 30%;
+        margin: 30px 0;
+    }
+    
+    .car-image-div {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    
+        img {
+            max-height: 100%;
+            width: 100%;
+            border-radius: 3px;    
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+        }
+    }
+
+    .car-image-div-not-logged {
+        width: 100%;
+        height: auto;
+    
+        img {
+            max-height: 100%;
+            width: 100%;
+            border-radius: 3px;
+        }
+    }
+}
+
 
   @media (max-width: 600px) {
+
+    .single-spot-container {
+        width: 90%;
+        margin: 10px auto;
+
+        .line-div {
+            width: 100%;
+            margin-bottom: 20px;
+        
+            .h1-div {
+              font-size: 3.5em;
+              margin: 0;
+              padding: 5px 0 8px 0;
+              border-bottom: 1px solid black;
+            }
+        
+            .line {
+              display: none;
+            }
+
+            p {
+                font-size: 2.5em;
+                margin-top: 10px;
+            }
+        }
+
+        .single-spot-container-spot {
+            text-align: center;
+    
+            .single-spot-container-spot-img-div{
+                margin-bottom: 20px;
+                height: 100%;
+    
+                img {
+                    max-width: 100%;
+                }
+            }
+    
+            .single-spot-container-spot-author-rating-wrapper {
+                display: flex;
+                justify-content: none;
+                align-items: center;
+                padding-bottom: 15px; 
+                border-bottom: 2px solid black;
+                flex-direction: column;
+
+                .delete-button {
+                    font-size: 1.5em;
+                    margin: 10px 0;
+                }
+
+                .single-spot-container-spot-author-div {
+                    margin-bottom: 12px;
+                }
+
+                .rating-div {
+                    margin-top: 12px;
+                }
+    
+                .single-spot-container-spot-author-div {
+                    font-size: 2em;
+                }
+            }
+    
+            .comment-form {
+                position: relative;
+    
+            }
+    
+            .single-spot-container-spot-comment-section {
+                margin: 30px 0;
+                border: 1px solid rgb(41, 41, 41);
+                border-radius: 3px;
+                min-height: 500px;
+                padding: 5px 15px; 
+                text-align: left;
+                overflow: auto;
+    
+                .comment-input {
+                    width: 100%;
+                    padding: 10px;
+                    font-size: 1.5em;
+                    margin: 15px 0;
+                    box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.1);
+                    background: #fff;
+                    border: none;
+                    border-top: 1px solid lightgray;
+                    border-left: 1px solid lightgray;
+                }
+    
+                .comment-button {
+                    position: static;
+                    padding: 10px;
+                    font-size: 1.5em;
+                    letter-spacing: 1px;
+                    display: block;
+                    margin: 0 auto 20px auto;
+                }
+    
+                .comment-div {
+                    margin: 10px 0;
+                    line-height: 1.1em;
+                    letter-spacing: 1px;
+                }
+    
+                .comment-author {
+                    font-size: 1.6em;
+                    font-weight: 600;
+                }
+    
+                .comment {
+                    font-size: 1.6em;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
     .search-field {
         margin: 40px auto 30px auto;
         width: 90%;
@@ -219,7 +388,7 @@
     .all-spots-container {
         flex-wrap: nowrap;
         flex-direction: column;
-        justify-content: none;
+        align-items:center;
         margin-bottom: 20px;
     }
 
@@ -230,11 +399,67 @@
     }
 
     .car-image-div {
-        height: 300px;
+        width: 100%;
+        height: auto;
+    
+        img {
+            max-height: 100%;
+            width: 100%;
+        }
+    }
+
+    .car-image-div-not-logged {
+        width: 100%;
+        height: auto;
+    
+        img {
+            max-height: 100%;
+            width: 100%;
+            border-radius: 3px;
+        }
+    }
+  }
+
+  @media (min-width: 601px) and (max-width: 1023px) {
+    .search-field {
+        margin: 50px auto 30px auto;
+        width: 50%;
+    }
+    
+    .all-spots-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
+    
+    .all-spots-container-spot {
+        width: 30%;
+        margin: 30px 0;
+    }
+    
+    .car-image-div {
+        width: 100%;
+        height: auto;
         text-align: center;
     
         img {
             max-height: 100%;
+            width: 100%;
+            border-radius: 3px;    
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+        }
+    }
+
+    .car-image-div-not-logged {
+        width: 100%;
+        height: auto;
+    
+        img {
+            max-height: 100%;
+            width: 100%;
+            border-radius: 3px;
         }
     }
   }

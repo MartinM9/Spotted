@@ -187,3 +187,151 @@ a {
   font-size: 1.6em;
   letter-spacing: 2px;
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    height: 80px;
+  
+    .logo-div {
+      height: 100%;
+  
+      img {
+        height: 100%;
+      }
+    }
+  
+    .navbar-menu {
+      display: none;
+      margin-right: 20px;
+  
+      li {
+        margin: 0 25px;
+        font-size: 2em;
+      }
+  
+      .anchor {
+        color: #fff;
+        letter-spacing: 2px;
+      }
+    }
+
+
+  }
+
+  .main-layer-content-div {
+    width: 80%;
+  
+    img {
+      width: 100%;
+    }
+  
+    p {
+      font-size: 3.5em;
+    }
+  }
+
+  .news-div {
+
+    .line-div {
+      width: 90%;
+  
+      .h1-div {
+        font-size: 3.5em;
+        margin: 0;
+        padding: 5px 15px;
+        border-bottom: 1px solid black;
+      }
+  
+      .line {
+        display: none;
+      }
+    }
+
+    .news-div-flex-container {
+      flex-wrap: nowrap;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 10px;
+      width: 90%;
+  
+      .news-div-mobile {
+        width: 100%;
+        margin-bottom: 30px;
+  
+        img {
+          max-height: 100%;
+          width: 100%;
+        }
+  
+      }
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+
+  .main-layer-content-div {
+    width: 60%;
+  
+    img {
+      width: 100%;
+    }
+  
+    p {
+      font-size: 3.5em;
+    }
+  }
+
+  .news-div {
+    margin-top: 15px;
+
+    .line-div {
+      width: 90%;
+  
+      .h1-div {
+        font-size: 5em;
+      }
+    }
+
+    .news-div-flex-container {
+      flex-wrap: nowrap;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 10px;
+      width: 90%;
+  
+      .news-div-mobile {
+        width: 100%;
+        margin-bottom: 30px;
+  
+        img {
+          max-height: 100%;
+          width: 100%;
+        }
+
+        .data-title {
+          padding: 10px;
+  
+          p {
+            font-size: 2.2em;
+          }
+        }
+  
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1380px) {
+  .main-layer-content-div {
+    width: 40%;
+  
+    img {
+      width: 100%;
+    }
+  
+    p {
+      font-size: 3.5em;
+    }
+  }
+}

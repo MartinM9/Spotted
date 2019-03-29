@@ -111,3 +111,54 @@ input:focus{
     margin-top: 20px;
     color: #cc0000;
 }
+
+@media (min-width:1024px) and (max-width: 1440px) {
+    .form-container {
+        width: 60%;
+    }
+}
+
+@media (max-width: 600px)  {
+
+    .signup-image-div, .login-image-div {
+        justify-content: center;
+    
+        h1 {
+            font-size: 4em;
+            letter-spacing: 2px;
+            font-weight: 400;
+            margin-top: 0;
+            color: rgb(39, 39, 39);
+            border-bottom: none;
+            padding: 20px 0 10px 0;
+            background-color: rgba(218, 218, 218, 0.651);
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .form-container {
+        width: 100%;
+        margin: 0;
+        min-height: inherit;
+        position: relative;
+        padding: 20px 0;
+    }
+
+    .form-input {
+        width: 90%;
+        padding: 10px;
+        margin: 15px 0;
+        font-size: 1.6em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+    .form-container {
+        width: 70%;
+        position: relative;
+        padding: 20px 0;
+    }
+
+}

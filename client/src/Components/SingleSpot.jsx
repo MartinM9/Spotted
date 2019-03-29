@@ -23,10 +23,7 @@ class SingleSpot extends Component {
         this.getSpotData(id)
     }
 
-    componentDidUpdate(prevProps, prevState){debugger
-        // if(prevProps.match.params.id !== this.props.match.params.id){
-        //     this.getSpotData(this.props.match.params.id)
-        // }
+    componentDidUpdate(prevProps, prevState){
         if(prevState.comment.length > 0) {
             this.getSpotData(this.props.match.params.id)
         }
