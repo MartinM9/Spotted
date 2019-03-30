@@ -16,7 +16,7 @@ class AllSpots extends Component {
 
     componentDidMount() {
         axios({
-            url: 'http://localhost:5000/all-spots',
+            url: `${process.env.REACT_APP_baserUrl}/all-spots`,
             method: 'get',
             withCredentials: true
         })

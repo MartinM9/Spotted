@@ -22,7 +22,7 @@ class EditProfile extends Component {
     handleSubmit = e => {
         e.preventDefault();
         axios({
-            url: `http://localhost:5000/profile/edit/${this.props.match.params.id}`,
+            url: `${process.env.REACT_APP_baserUrl}/profile/edit/${this.props.match.params.id}`,
             method: 'post',
             data: this.state,
             withCredentials: true

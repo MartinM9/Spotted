@@ -18,7 +18,7 @@ class Login extends Component {
     handleSubmit = e => {
         e.preventDefault();
         axios({
-            url: 'http://localhost:5000/log-in',
+            url: `${process.env.REACT_APP_baserUrl}/log-in`,
             method: 'post',
             data: this.state,
             withCredentials: true

@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cloudinary": "^1.13.2",
+    "dotenv": "^7.0.0",
     "font-awesome": "^4.7.0",
     "history": "^4.9.0",
     "multer": "^1.4.1",
@@ -17,8 +18,10 @@
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "dotenv -e .dev.env react-scripts start",
     "build": "react-scripts build",
+    "build-dev": "dotenv -e .dev.env react-scripts build",
+    "build-product": "dotenv -e .product.env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

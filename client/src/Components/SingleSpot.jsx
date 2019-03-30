@@ -31,7 +31,7 @@ class SingleSpot extends Component {
 
     getSpotData = (id) =>{
         axios({
-            url: `http://localhost:5000/single-spot/${id}`,
+            url: `${process.env.REACT_APP_baserUrl}/single-spot/${id}`,
             method: 'get',
             withCredentials: true
         })
@@ -46,7 +46,7 @@ class SingleSpot extends Component {
 
     deleteHandler = () => {
         axios({
-            url: `http://localhost:5000/single-spot/${this.props.match.params.id}/delete`,
+            url: `${process.env.REACT_APP_baserUrl}/single-spot/${this.props.match.params.id}/delete`,
             method: 'post',
             withCredentials: true
         })
@@ -65,7 +65,7 @@ class SingleSpot extends Component {
 
     ratingHandler = e => {
         axios({
-            url: `http://localhost:5000/single-spot/${this.props.match.params.id}`,
+            url: `${process.env.REACT_APP_baserUrl}/single-spot/${this.props.match.params.id}`,
             method: 'post',
             data: {star: e},
             withCredentials: true
@@ -103,7 +103,7 @@ class SingleSpot extends Component {
     submitComment = e => {
         e.preventDefault();
         axios({
-            url: `http://localhost:5000/single-spot/${this.props.match.params.id}/comment`,
+            url: `${process.env.REACT_APP_baserUrl}/single-spot/${this.props.match.params.id}/comment`,
             method: 'post',
             data: {comment: this.state.comment},
             withCredentials:  true

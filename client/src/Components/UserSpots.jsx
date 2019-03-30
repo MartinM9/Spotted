@@ -14,7 +14,7 @@ class UserSpots extends Component {
 
     componentDidMount() {
         axios({
-            url: `http://localhost:5000/profile/${this.props.match.params.id}/spots`,
+            url: `${process.env.REACT_APP_baserUrl}/profile/${this.props.match.params.id}/spots`,
             method: 'get',
             withCredentials: true
         })

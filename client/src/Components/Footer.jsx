@@ -7,7 +7,7 @@ class Footer extends Component {
     render() {
         return(
             <footer className="footer">
-                <p>Made with passion</p>
+                <i className="fab fa-instagram instagram"></i>
             </footer>
         )
     }

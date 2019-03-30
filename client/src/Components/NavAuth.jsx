@@ -5,10 +5,19 @@ import axios from 'axios';
 
 class NavAuth extends Component {
 
+    hamburger = React.createRef();
+    menu = React.createRef()
+
+    myFunction = () => {
+        console.log(this.hamburger)
+        this.hamburger.current.classList.toggle("change");
+        this.menu.current.classList.toggle("show");
+    }
+
     handleLogOut = () => {
         localStorage.clear();
         axios({
-            url: 'http://localhost:5000/log-out',
+            url: `${process.env.REACT_APP_baserUrl}/log-out`,
             method: 'get',
             withCredentials: true
         })
@@ -32,8 +41,17 @@ class NavAuth extends Component {
                         <li><Link className="anchor" to="/profile">Profile</Link></li>
                         <li><a href="/" onClick={this.handleLogOut} className="anchor">Log out</a></li>
                     </ul>
+                    <div ref={this.hamburger} id="hamburger" onClick={this.myFunction}>
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                        <div className="bar3"></div>
+                    </div>
+                    <ul className="nav-ul-menu" id="menu" ref={this.menu}>
+                        <li><Link className="anchor" to="/all-spots">All spots</Link></li>
+                        <li><Link className="anchor" to="/profile">Profile</Link></li>
+                        <li><a href="/" onClick={this.handleLogOut} className="anchor">Log out</a></li>
+                    </ul>
                 </div>
-                
             </nav>
         )
     }

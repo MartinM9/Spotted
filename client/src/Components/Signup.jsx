@@ -23,7 +23,7 @@ class Signup extends Component {
     handleSubmit = e => {
         e.preventDefault();
         axios({
-            url: 'http://localhost:5000/sign-up',
+            url: `${process.env.REACT_APP_baserUrl}/sign-up`,
             method: 'post',
             data: this.state,
             withCredentials: true
