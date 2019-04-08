@@ -48,7 +48,7 @@ class App extends Component {
         {!this.state.loggedIn && <NavUnauth />}
         <Switch>
             <Route exact path="/" component={Main}/>
-            <Route path="/sign-up" component={Signup} />
+            <Route path="/sign-up" render={() => <Signup haveLoggedIn={this.haveLoggedIn} />} />
             <Route path="/all-spots" render={(props) => <AllSpots loggedIn={this.state.loggedIn} />} />
             <Route path="/log-in" render={() => <Login haveLoggedIn={this.haveLoggedIn} history={history} />} />
             <Route path="/create-spot" render={() => <CreateSpot addedSpot={this.addedSpot} user={this.state.user} history={history} />} />

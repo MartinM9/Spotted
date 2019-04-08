@@ -21,7 +21,6 @@ class AllSpots extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response);
             this.setState({allSpots:response.data, isLoading:false, loggedIn: this.props.loggedIn})
         })
         .catch(err => {

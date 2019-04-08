@@ -28,7 +28,6 @@ class EditProfile extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
             history.push('/profile')
         })
         .catch(err => {

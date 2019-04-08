@@ -1,7 +1,6 @@
 import React from 'react'
 
 const YouCar = ( {data} ) => {
-    console.log(data);
     return(
         <>
             <div className="news-div-mobile">

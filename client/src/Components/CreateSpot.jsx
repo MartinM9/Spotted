@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import service from '../service'
+import service from '../service';
+// import ReactCrop from 'react-image-crop';
+// import 'react-image-crop/dist/ReactCrop.css';
 
 class CreateSpot extends Component {
 
@@ -9,6 +11,9 @@ class CreateSpot extends Component {
         engine: '',
         horsepower: '',
         image: ''
+        // crop: {
+        //     aspect: 1/1
+        //    }
     }
 
     handleChange = e => {
@@ -18,16 +23,11 @@ class CreateSpot extends Component {
     }
 
     handleImageUpload = e => {
-        console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
-        // image => this name has to be the same as in the model since we pass
-        // req.body to .create() method when creating a new thing in '/api/things/create' POST route
         uploadData.append("image", e.target.files[0]);
         
         service.handleUpload(uploadData)
             .then(response => {
-            console.log('response is: ', response);
-            // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
             this.setState({ image: response.secure_url });
             })
             .catch(err => {
@@ -37,18 +37,19 @@ class CreateSpot extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        
         service.saveNewSpot(this.state, this.props.user._id)
         .then(response => {
-            console.log('added: ', response);
-            // here you would redirect to some other page 
             this.props.addedSpot(this.state);
             this.props.history.push('/all-spots');
         })
         .catch(err => {
-            console.log("Error while adding the thing: ", err);
+            console.log("Error while creating the spot: ", err);
         });
     }
+
+    // handleOnCropChange = (crop) => {
+    //     this.setState({crop: crop})
+    // }
 
     render() {
         return(
@@ -72,6 +73,7 @@ class CreateSpot extends Component {
                                 <li>Every spotter can spot every car only once.</li>
                                 <li>The pictures must be of decent quality. Every image will be cropped to 1024px width and 768px height.</li>
                             </ul>
+                            {/* <ReactCrop src={this.state.image} crop={this.state.crop} onChange={this.handleOnCropChange} /> */}
                         </div>
                     </div>
                 </section>

@@ -8,7 +8,6 @@ class NavUnauth extends Component {
         menu = React.createRef()
 
     myFunction = () => {
-        console.log(this.hamburger)
           this.hamburger.current.classList.toggle("change");
           this.menu.current.classList.toggle("show");
     }

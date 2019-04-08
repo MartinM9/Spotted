@@ -19,7 +19,6 @@ class Main extends Component {
             withCredentials: false
         })
         .then(result => {
-            console.log(result)
             this.setState({
                 youCar: [result.data.items[0], result.data.items[1], result.data.items[2]],
                 isLoading: false

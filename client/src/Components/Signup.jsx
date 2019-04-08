@@ -29,7 +29,7 @@ class Signup extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
+            this.props.haveLoggedIn(true, response.data.user);
             history.push('/profile')
         })
         .catch(err => {

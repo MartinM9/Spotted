@@ -8,8 +8,7 @@ class NavAuth extends Component {
     hamburger = React.createRef();
     menu = React.createRef()
 
-    myFunction = () => {
-        console.log(this.hamburger)
+    hamburgerHandler = () => {
         this.hamburger.current.classList.toggle("change");
         this.menu.current.classList.toggle("show");
     }
@@ -22,7 +21,6 @@ class NavAuth extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response);
         })
         .catch(err => {
             console.log(err)
@@ -41,7 +39,7 @@ class NavAuth extends Component {
                         <li><Link className="anchor" to="/profile">Profile</Link></li>
                         <li><a href="/" onClick={this.handleLogOut} className="anchor">Log out</a></li>
                     </ul>
-                    <div ref={this.hamburger} id="hamburger" onClick={this.myFunction}>
+                    <div ref={this.hamburger} id="hamburger" onClick={this.hamburgerHandler}>
                         <div className="bar1"></div>
                         <div className="bar2"></div>
                         <div className="bar3"></div>

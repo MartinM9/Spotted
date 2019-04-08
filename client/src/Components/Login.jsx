@@ -24,12 +24,10 @@ class Login extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response);
             this.props.haveLoggedIn(true, response.data.user);
             this.props.history.push('/profile')
         })
         .catch(err => {
-            console.log(err)
             this.setState({
                 errMessage: err.response.data.errorMessage
             })

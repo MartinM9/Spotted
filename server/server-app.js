@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 ///////////////////////////////////////////////////// Connect to DB /////////////////////////////////////////////////////
 
-mongoose.connect('mongodb://localhost/spotted', {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI)
         .then(x => {
             console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
         })
@@ -30,6 +30,7 @@ mongoose.connect('mongodb://localhost/spotted', {useNewUrlParser: true})
 ///////////////////////////////////////////////////// CORS /////////////////////////////////////////////////////
 
 app.use(cors({
+    // origin: ['https://spotted-react.herokuapp.com', 'spotted-react.herokuapp.com', 'https://api.rss2json.com/'],
     origin: ['http://localhost:3000', 'https://api.rss2json.com/'],
     credentials: true
 }))
@@ -37,7 +38,7 @@ app.use(cors({
 ///////////////////////////////////////////////////// Sessions /////////////////////////////////////////////////////
 
 var store = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/spotted',
+    uri: process.env.MONGODB_URI,
     collection: 'mySessions'
   });
   
@@ -138,7 +139,7 @@ app.post('/sign-up', (req, res) => {
     user.password = hash;
     User.create(user)
         .then(result => {
-            res.json({message: 'User created'});
+            res.status(200).send({user: user}) 
             console.log(result);
         })
         .catch(err => {
@@ -304,6 +305,6 @@ app.get("/log-out",(req,res)=>{
 })
   
 
-const port = 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => console.log(`server started on port ${port}`));

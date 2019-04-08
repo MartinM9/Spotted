@@ -36,7 +36,6 @@ class SingleSpot extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
             this.setState({spot:response.data, isLoading:false, ratings: response.data.ratings, allComments: response.data.comments})
         })
         .catch(err => {
@@ -51,7 +50,6 @@ class SingleSpot extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
         })
         .catch(err => {
             console.log(err)
@@ -71,12 +69,11 @@ class SingleSpot extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
-                if(response.data != null) {
-                    this.setState({
-                        ratings: response.data.ratings
-                    })
-                }
+            if(response.data != null) {
+                this.setState({
+                    ratings: response.data.ratings
+                })
+            }
         })
         .catch(err => {
             console.log(err)
@@ -109,7 +106,6 @@ class SingleSpot extends Component {
             withCredentials:  true
         })
         .then(response => {
-            console.log(response)
         })
         .catch(err => {
             console.log(err)

@@ -19,7 +19,6 @@ class UserSpots extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
             this.setState({user: response.data, isLoading: false, loggedIn: this.props.loggedIn })
         })
         .catch(err => {
