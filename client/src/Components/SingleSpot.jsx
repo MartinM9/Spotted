@@ -116,7 +116,7 @@ class SingleSpot extends Component {
         let spot = this.state.spot
         const allComments = this.state.allComments.map(comment => {            
             return (
-                <div className="all-comments-div">
+                <div className="all-comments-div" key={comment._id}>
                     <Comment
                         comment={comment}
                     />

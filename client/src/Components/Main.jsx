@@ -3,13 +3,11 @@ import video from '../Style/Beach.mp4';
 import logo from '../Style/logo_transparent.png';
 import axios from 'axios';
 import YouCar from './YouCar';
-import Loader from './Loader';
 
 class Main extends Component {
 
     state = {
-        youCar: [],
-        isLoading:true
+        youCar: []
     }
 
     componentDidMount = () => {
@@ -20,8 +18,7 @@ class Main extends Component {
         })
         .then(result => {
             this.setState({
-                youCar: [result.data.items[0], result.data.items[1], result.data.items[2]],
-                isLoading: false
+                youCar: [result.data.items[0], result.data.items[1], result.data.items[2]]
             })
         })
         .catch(err => {
@@ -33,13 +30,14 @@ class Main extends Component {
 
         const youCarData = this.state.youCar.map(data => {
             return(
-                <YouCar data={data} />
+                <div className="news-div-mobile" key={data.guid}>
+                    <YouCar data={data} />
+                </div>
             )
         })
 
         return(
             <>
-                {this.state.isLoading && <Loader />}
                 <div className="content">
                     <div className="video-div">
                         <div className="layer"></div>

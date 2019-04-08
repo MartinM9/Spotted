@@ -4,7 +4,7 @@ const Spot =( {spot, showSingleSpot, loggedIn} ) => {
     return(
         <>  
             {loggedIn && <div className="car-image-div">
-                <img  onClick={e => showSingleSpot(e, spot._id)} src={spot.image} alt="Car" />
+                <img  onClick={e => showSingleSpot(e, spot._id)} src={spot.image} alt="Car" key={spot._id} />
             </div>}
             {!loggedIn && <div className="car-image-div-not-logged">
                 <img src={spot.image} alt="Car" />

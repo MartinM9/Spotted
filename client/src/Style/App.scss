@@ -193,6 +193,8 @@ a {
   }
 }
 
+///////////////////////////////////////////////////// Media /////////////////////////////////////////////////////
+
 @media (max-width: 600px) {
   .navbar {
     height: 80px;
@@ -347,25 +349,13 @@ a {
 
 @media (min-width: 1024px) and (max-width: 1380px) {
 
-  .video-div {
-    height: calc(100vh - 80px);
-    width: 100%; 
-  
-    video {
-      object-fit: cover;
-    }
-  }
-
   .main-layer-content-div {
-    width: 40%;
-  
-    
-    img {
-      width: 100%;
-    }
+    width: 25%;
   
     p {
       font-size: 3.5em;
     }
   }
+
+
 }

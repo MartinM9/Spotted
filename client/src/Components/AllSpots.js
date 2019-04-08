@@ -44,7 +44,7 @@ class AllSpots extends Component {
         });
         const allSpots = filteredSpots.map(spot => {            
             return (
-                <div className="all-spots-container-spot">
+                <div className="all-spots-container-spot" key={spot._id}>
                     <Spot
                         spot={spot}
                         showSingleSpot={this.showSingleSpot}

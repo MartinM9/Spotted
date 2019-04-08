@@ -21,7 +21,7 @@ class NavUnauth extends Component {
                 </div>
                 <div>
                     <ul className="navbar-menu">
-                        <li><Link className="anchor" to="/all-spots">All spots</Link></li>
+                        {/* <li><Link className="anchor" to="/all-spots">All spots</Link></li> */}
                         <li><Link className="anchor" to="/sign-up">Sign up</Link></li>
                         <li><Link className="anchor" to="/log-in">Log in</Link></li>
                     </ul>
@@ -31,7 +31,7 @@ class NavUnauth extends Component {
                         <div className="bar3"></div>
                     </div>
                     <ul className="nav-ul-menu" id="menu" ref={this.menu}>
-                        <li><Link className="anchor" to="/all-spots">All spots</Link></li>
+                        {/* <li><Link className="anchor" to="/all-spots">All spots</Link></li> */}
                         <li><Link className="anchor" to="/sign-up">Sign up</Link></li>
                         <li><Link className="anchor" to="/log-in">Log in</Link></li>
                     </ul>

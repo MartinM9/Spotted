@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGODB_URI)
 ///////////////////////////////////////////////////// CORS /////////////////////////////////////////////////////
 
 app.use(cors({
-    // origin: ['https://spotted-react.herokuapp.com', 'spotted-react.herokuapp.com', 'https://api.rss2json.com/'],
+    // origin: ['https://spotted-react.herokuapp.com', 'spotted-react.herokuapp.com', 'http://spotted-react.herokuapp.com', 'https://api.rss2json.com/'],
     origin: ['http://localhost:3000', 'https://api.rss2json.com/'],
     credentials: true
 }))

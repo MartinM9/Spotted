@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Loader from './Loader';
 import Spot from './Spot';
 import history from '../history';
 
@@ -51,9 +50,9 @@ class UserSpots extends Component {
         
         return(
             <>
-                {this.state.isLoading && <Loader />}
                 <section className="content">
-                {this.state.user && <div className="heading-user-spots">All spots by {this.state.user.username}</div>}
+                    {userSpots === null && <div className="no-spots-heading"><div className="heading-user-spots">No spots yet.</div></div>}
+                    {this.state.user && <div className="heading-user-spots">All spots by {this.state.user.username}</div>}
                     <div className="all-spots-container">
                         {this.state.user && userSpots}
                     </div>

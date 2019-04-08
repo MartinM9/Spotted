@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import service from '../service';
-// import ReactCrop from 'react-image-crop';
-// import 'react-image-crop/dist/ReactCrop.css';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 class CreateSpot extends Component {
 
@@ -10,10 +10,11 @@ class CreateSpot extends Component {
         type: '',
         engine: '',
         horsepower: '',
-        image: ''
-        // crop: {
-        //     aspect: 1/1
-        //    }
+        image: null,
+        crop: {
+            aspect: 4/3
+           },
+        imgSrc: null
     }
 
     handleChange = e => {
@@ -35,6 +36,10 @@ class CreateSpot extends Component {
             });
     }
 
+    // handleImageUpload = e => {
+    //     this.setState({image: URL.createObjectURL(e.target.files[0])})
+    // }
+
     handleSubmit = e => {
         e.preventDefault();
         service.saveNewSpot(this.state, this.props.user._id)
@@ -47,9 +52,17 @@ class CreateSpot extends Component {
         });
     }
 
-    // handleOnCropChange = (crop) => {
-    //     this.setState({crop: crop})
-    // }
+    handleImageLoaded = (image) => {
+        console.log(image)
+    }
+
+    handleOnCropChange = (crop) => {
+        this.setState({crop: crop})
+    }
+
+    handleOnCropComplete = (crop, pixelCrop) => {
+        console.log(crop, pixelCrop)
+    }
 
     render() {
         return(
@@ -73,7 +86,14 @@ class CreateSpot extends Component {
                                 <li>Every spotter can spot every car only once.</li>
                                 <li>The pictures must be of decent quality. Every image will be cropped to 1024px width and 768px height.</li>
                             </ul>
-                            {/* <ReactCrop src={this.state.image} crop={this.state.crop} onChange={this.handleOnCropChange} /> */}
+                            <div className="crop-div">
+                                <ReactCrop 
+                                    src={this.state.image} 
+                                    crop={this.state.crop} 
+                                    onChange={this.handleOnCropChange} 
+                                    onImageLoaded={this.handleImageLoaded}
+                                    onComplete={this.handleOnCropComplete} />
+                            </div>
                         </div>
                     </div>
                 </section>

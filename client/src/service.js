@@ -11,7 +11,7 @@ const errorHandler = err => {
 export default {
   service,
 
-  handleUpload (theFile) {
+  handleUpload (theFile) {debugger
     return service.post('/upload', theFile)
       .then(res => res.data)
       .catch(errorHandler);
