@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import service from '../service';
-import ReactCrop from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
+// import ReactCrop from 'react-image-crop';
+// import 'react-image-crop/dist/ReactCrop.css';
 
 class CreateSpot extends Component {
 
@@ -10,19 +10,50 @@ class CreateSpot extends Component {
         type: '',
         engine: '',
         horsepower: '',
-        image: null,
-        crop: {
-            aspect: 4/3
-           },
-        imgSrc: null
+        image: ''
+        // crop: {
+        //     aspect: 4/3
+        //    },
+        // imgSrc: null
     }
+
+    // getCroppedImg = (image, pixelCrop, fileName) => {
+ 
+    //     const canvas = document.createElement('canvas');
+    //     canvas.width = pixelCrop.width;
+    //     canvas.height = pixelCrop.height;
+    //     const ctx = canvas.getContext('2d');
+       
+    //     ctx.drawImage(
+    //       image,
+    //       pixelCrop.x,
+    //       pixelCrop.y,
+    //       pixelCrop.width,
+    //       pixelCrop.height,
+    //       0,
+    //       0,
+    //       pixelCrop.width,
+    //       pixelCrop.height
+    //     );
+       
+    //     // As Base64 string
+    //     // const base64Image = canvas.toDataURL('image/jpeg');
+       
+    //     // As a blob
+    //     return new Promise((resolve, reject) => {
+    //       canvas.toBlob(blob => {
+    //         blob.name = fileName;
+    //         resolve(blob);
+    //       }, 'image/jpeg');
+    //     });
+    //   }
 
     handleChange = e => {
         let updateSpot = {};
         updateSpot[e.target.name] = e.target.value;
         this.setState(updateSpot);
     }
-
+    // this.state.imgSrc
     handleImageUpload = e => {
         const uploadData = new FormData();
         uploadData.append("image", e.target.files[0]);
@@ -35,9 +66,9 @@ class CreateSpot extends Component {
             console.log("Error while uploading the file: ", err);
             });
     }
-
-    // handleImageUpload = e => {
-    //     this.setState({image: URL.createObjectURL(e.target.files[0])})
+    // this.setState({image: URL.createObjectURL(e.target.files[0]), imgSrc: e.target.files[0]})
+    // handleImagePreview = e => {
+    //     this.setState({image: e.target.files[0]})
     // }
 
     handleSubmit = e => {
@@ -52,18 +83,21 @@ class CreateSpot extends Component {
         });
     }
 
-    handleImageLoaded = (image) => {
-        console.log(image)
-    }
+    // handleOnCropChange = (crop) => {
+    //     this.setState({crop: crop})
+    // }
 
-    handleOnCropChange = (crop) => {
-        this.setState({crop: crop})
-    }
+    // handleOnCropComplete = (crop, pixelCrop) => {
+    //     const imageFile = this.state.imgSrc;
+    //     this.getCroppedImg(imageFile, pixelCrop, 'preview.jpg')
+    //     .then((res) => {
+    //         const blobUrl = URL.createObjectURL(res);
+    //         console.log(blobUrl);
+    //     })
+        
+    // }
 
-    handleOnCropComplete = (crop, pixelCrop) => {
-        console.log(crop, pixelCrop)
-    }
-
+    
     render() {
         return(
             <>
@@ -86,14 +120,14 @@ class CreateSpot extends Component {
                                 <li>Every spotter can spot every car only once.</li>
                                 <li>The pictures must be of decent quality. Every image will be cropped to 1024px width and 768px height.</li>
                             </ul>
-                            <div className="crop-div">
+                            {/* <div className="crop-div">
                                 <ReactCrop 
                                     src={this.state.image} 
                                     crop={this.state.crop} 
-                                    onChange={this.handleOnCropChange} 
-                                    onImageLoaded={this.handleImageLoaded}
+                                    onChange={this.handleOnCropChange}
                                     onComplete={this.handleOnCropComplete} />
-                            </div>
+                                <button className="submit-btn" onClick={this.handleImageUpload}>Crop the image</button>
+                            </div> */}
                         </div>
                     </div>
                 </section>
